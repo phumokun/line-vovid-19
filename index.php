@@ -12,120 +12,120 @@ $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
 $jsonFlex = {
-    "type": "bubble",
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "text",
-          "text": "รายงานสถานการณ์COVID-19",
-          "weight": "bold",
-          "color": "#1DB446",
-          "size": "sm"
-        },
-        {
-          "type": "text",
-          "text": "ประเทศไทย",
-          "size": "xs",
-          "color": "#aaaaaa",
-          "wrap": true
-        },
-        {
-          "type": "separator",
-          "margin": "xxl"
-        },
-        {
-          "type": "box",
-          "layout": "vertical",
-          "margin": "xxl",
-          "spacing": "sm",
-          "contents": [
-            {
-              "type": "box",
-              "layout": "horizontal",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "ผู้ติดเชื้อ",
-                  "size": "sm",
-                  "color": "#555555",
-                  "flex": 0
-                },
-                {
-                  "type": "text",
-                  "text": "$2.99",
-                  "size": "sm",
-                  "color": "#111111",
-                  "align": "end"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "horizontal",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "เสียชีวิต",
-                  "size": "sm",
-                  "color": "#555555",
-                  "flex": 0
-                },
-                {
-                  "type": "text",
-                  "text": "5",
-                  "size": "sm",
-                  "color": "#111111",
-                  "align": "end"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "horizontal",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "รักษาหาย",
-                  "size": "sm",
-                  "color": "#555555",
-                  "flex": 0
-                },
-                {
-                  "type": "text",
-                  "text": "$3.33",
-                  "size": "sm",
-                  "color": "#111111",
-                  "align": "end"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "separator",
-          "margin": "xxl"
-        },
-        {
-          "type": "box",
-          "layout": "horizontal",
-          "margin": "md",
-          "contents": [
-            {
-              "type": "text",
-              "text": "ข้อมูลจาก rapidapi.com",
-              "size": "xs",
-              "color": "#aaaaaa",
-              "flex": 0
-            }
-          ]
-        }
-      ]
-    },
-    "styles": {
+    "type": "flex",
+    "altText": "Flex Message",
+    "contents": {
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Purchase",
+            "size": "lg",
+            "align": "start",
+            "weight": "bold",
+            "color": "#009813"
+          },
+          {
+            "type": "text",
+            "text": "฿ 100.00",
+            "size": "3xl",
+            "weight": "bold",
+            "color": "#000000"
+          },
+          {
+            "type": "text",
+            "text": "Rabbit Line Pay",
+            "size": "lg",
+            "weight": "bold",
+            "color": "#000000"
+          },
+          {
+            "type": "text",
+            "text": "2019.02.14 21:47 (GMT+0700)",
+            "size": "xs",
+            "color": "#B2B2B2"
+          },
+          {
+            "type": "text",
+            "text": "Payment complete.",
+            "margin": "lg",
+            "size": "lg",
+            "color": "#000000"
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "separator",
+            "color": "#C3C3C3"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "margin": "lg",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Merchant",
+                "align": "start",
+                "color": "#C3C3C3"
+              },
+              {
+                "type": "text",
+                "text": "BTS 01",
+                "align": "end",
+                "color": "#000000"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "margin": "lg",
+            "contents": [
+              {
+                "type": "text",
+                "text": "New balance",
+                "color": "#C3C3C3"
+              },
+              {
+                "type": "text",
+                "text": "฿ 45.57",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#C3C3C3"
+          }
+        ]
+      },
       "footer": {
-        "separator": true
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "View Details",
+            "size": "lg",
+            "align": "start",
+            "color": "#0084B6",
+            "action": {
+              "type": "uri",
+              "label": "View Details",
+              "uri": "https://google.co.th/"
+            }
+          }
+        ]
       }
     }
   }
