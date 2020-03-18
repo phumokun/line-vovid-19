@@ -19,7 +19,7 @@ $jsonFlex = {
       "contents": [
         {
           "type": "text",
-          "text": "รายงานสถานการณ์ COVID-19",
+          "text": "รายงานสถานการณ์COVID-19",
           "weight": "bold",
           "color": "#1DB446",
           "size": "sm"
@@ -114,7 +114,7 @@ $jsonFlex = {
           "contents": [
             {
               "type": "text",
-              "text": "ข้อมูล Real Time จาก rapidapi.com",
+              "text": "ข้อมูลจาก rapidapi.com",
               "size": "xs",
               "color": "#aaaaaa",
               "flex": 0
