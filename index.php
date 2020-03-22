@@ -1,9 +1,46 @@
 <?php
 
+// $curl = curl_init();
+
+// curl_setopt_array($curl, array(
+// 	CURLOPT_URL => "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
+// 	CURLOPT_RETURNTRANSFER => true,
+// 	CURLOPT_FOLLOWLOCATION => true,
+// 	CURLOPT_ENCODING => "",
+// 	CURLOPT_MAXREDIRS => 10,
+// 	CURLOPT_TIMEOUT => 30,
+// 	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+// 	CURLOPT_CUSTOMREQUEST => "GET",
+// 	CURLOPT_HTTPHEADER => array(
+// 		"x-rapidapi-host: coronavirus-monitor.p.rapidapi.com",
+// 		"x-rapidapi-key: 4d4da669b5msh479bb2caa137131p12c0b9jsn8abf5821c5af"
+// 	),
+// ));
+
+// $result = curl_exec($curl);
+// $err = curl_error($curl);
+
+// curl_close($curl);
+
+// if ($err) {
+// 	echo "cURL Error #:" . $err;
+// } else {
+//     $response = json_decode($result, true);
+//     $cases = $response['countries_stat'][40]['cases'];
+//     $deaths = $response['countries_stat'][40]['deaths'];
+//     $new_cases = $response['countries_stat'][40]['new_cases'];
+//     $serious_critical = $response['countries_stat'][40]['serious_critical'];
+//     $total_recovered = $response['countries_stat'][40]['total_recovered'];
+//     echo $cases;
+//     print_r($response['countries_stat'][40]);
+    
+// }
+
+
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
+	CURLOPT_URL => "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_particular_country.php?country=Thailand",
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_ENCODING => "",
@@ -26,14 +63,53 @@ if ($err) {
 	echo "cURL Error #:" . $err;
 } else {
     $response = json_decode($result, true);
-    $cases = $response['countries_stat'][39]['cases'];
-    $deaths = $response['countries_stat'][39]['deaths'];
-    $new_cases = $response['countries_stat'][39]['new_cases'];
-    $serious_critical = $response['countries_stat'][39]['serious_critical'];
-    $total_recovered = $response['countries_stat'][39]['total_recovered'];
-    echo $cases;
-    print_r($response['countries_stat'][39]);
-    
+    $responsee = end($response['stat_by_country']);
+
+    $cases = $responsee['total_cases'];
+    if ($cases != ""){
+        $cases = $responsee['total_cases'];
+    } else {
+        $cases = "0";
+    }
+
+    $deaths = $responsee['total_deaths'];
+    if ($deaths != ""){
+        $deaths = $responsee['total_deaths'];
+    } else {
+        $deaths = "0";
+    }
+
+    $new_cases = $responsee['new_cases'];
+    if ($new_cases != ""){
+        $new_cases = $responsee['new_cases'];
+    } else {
+        $new_cases = "0";
+    }
+
+    $serious_critical = $responsee['serious_critical'];
+    if ($serious_critical != ""){
+        $serious_critical = $responsee['serious_critical'];
+    } else {
+        $serious_critical = "0";
+    }
+
+    $total_recovered = $responsee['total_recovered'];
+    if ($total_recovered != ""){
+        $total_recovered = $responsee['total_recovered'];
+    } else {
+        $total_recovered = "0";
+    }
+
+    $active_cases = $responsee['active_cases'];
+    if ($active_cases != ""){
+        $active_cases = $responsee['active_cases'];
+    } else {
+        $active_cases = "0";
+    }
+    // $record_date = $responsee['record_date'];
+    // echo $cases;
+    // print_r($responsee);
+    // print_r(end($response));
 }
 
 
@@ -102,73 +178,47 @@ $jsonFlex = [
                         ]
                     ],
                     [
-                        "type" => "box",
-                        "layout" => "baseline",
-                        "margin" => "lg",
-                        "contents" => [
-                            [
-                                "type" => "text",
-                                "text" => "ผู้ป่วยใหม่",
-                                "weight" => "bold",
-                                "size" => "sm",
-                                "align" => "start",
-                                "color" => "#555555",
-                                "flex" => 0
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => $new_cases,
-                                "weight" => "bold",
-                                "size" => "sm",
-                                "align" => "end",
-                                "color" => "#555555"
-                            ]
+                    "type" => "box",
+                    "layout" => "baseline",
+                    "margin" => "lg",
+                    "contents" => [
+                        [
+                            "type" => "text",
+                            "text" => "ผู้ป่วยใหม่",
+                            "weight" => "bold",
+                            "size" => "sm",
+                            "align" => "start",
+                            "color" => "#555555",
+                            "flex" => 0
+                        ],
+                        [
+                            "type" => "text",
+                            "text" => $new_cases,
+                            "weight" => "bold",
+                            "size" => "sm",
+                            "align" => "end",
+                            "color" => "#555555"
                         ]
+                        ]   
                     ],
                     [
-                        "type" => "box",
-                        "layout" => "baseline",
-                        "margin" => "lg",
-                        "contents" => [
-                            [
-                                "type" => "text",
-                                "text" => "อาการรุนแรง",
-                                "weight" => "bold",
-                                "size" => "sm",
-                                "align" => "start",
-                                "color" => "#555555",
-                                "flex" => 0
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => $serious_critical,
-                                "weight" => "bold",
-                                "size" => "sm",
-                                "align" => "end",
-                                "color" => "#566270"
-                            ]
+                    "type" => "box",
+                    "layout" => "baseline",
+                    "margin" => "lg",
+                    "contents" => [
+                        [
+                            "type" => "text",
+                            "text" => "กำลังรักษา",
+                            "size" => "sm",
+                            "color" => "#555555",
+                            "flex" => 0
+                        ],
+                        [
+                            "type" => "text",
+                            "text" => $active_cases,
+                            "color" => "#566270",
+                            "align" => "end"
                         ]
-                    ],
-                    [
-                        "type" => "box",
-                        "layout" => "baseline",
-                        "margin" => "lg",
-                        "contents" => [
-                            [
-                                "type" => "text",
-                                "text" => "เสียชีวิต",
-                                "size" => "sm",
-                                "align" => "start",
-                                "color" => "#E53A40",
-                                "flex" => 0
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => $deaths,
-                                "size" => "sm",
-                                "align" => "end",
-                                "color" => "#EC7357"
-                            ]
                         ]
                     ],
                     [
@@ -189,13 +239,59 @@ $jsonFlex = [
                             "color" => "#566270",
                             "align" => "end"
                         ]
-                    ]
-                ],
-                [
-                    "type" => "separator",
-                    "margin" => "xxl"
-                ],
-                [
+                        ]
+                    ],
+                    [
+                    "type" => "box",
+                    "layout" => "baseline",
+                    "margin" => "lg",
+                    "contents" => [
+                        [
+                            "type" => "text",
+                            "text" => "อาการรุนแรง",
+                            "weight" => "bold",
+                            "size" => "sm",
+                            "align" => "start",
+                            "color" => "#555555",
+                            "flex" => 0
+                        ],
+                        [
+                            "type" => "text",
+                            "text" => $serious_critical,
+                            "weight" => "bold",
+                            "size" => "sm",
+                            "align" => "end",
+                            "color" => "#566270"
+                        ]
+                        ]
+                    ],
+                    [
+                    "type" => "box",
+                    "layout" => "baseline",
+                    "margin" => "lg",
+                    "contents" => [
+                        [
+                            "type" => "text",
+                            "text" => "เสียชีวิต",
+                            "size" => "sm",
+                            "align" => "start",
+                            "color" => "#E53A40",
+                            "flex" => 0
+                        ],
+                        [
+                            "type" => "text",
+                            "text" => $deaths,
+                            "size" => "sm",
+                            "align" => "end",
+                            "color" => "#EC7357"
+                        ]
+                        ]
+                    ],
+                    [
+                        "type" => "separator",
+                        "margin" => "xxl"
+                    ],
+                    [
                     "type" => "box",
                     "layout" => "horizontal",
                     "margin" => "md",
