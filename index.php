@@ -1,8 +1,9 @@
 <?php
 
+include_once 'connectdb.php';
+
 // reprot all
 $curl=curl_init();
-
 curl_setopt_array($curl, array(
 	CURLOPT_URL => "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_particular_country.php?country=Thailand",
 	CURLOPT_RETURNTRANSFER => true,
@@ -93,707 +94,1187 @@ if($err){
 // end report all
 
 // สงขลา
-$SKA=curl_init();
-
-curl_setopt_array($SKA, array(
-    CURLOPT_URL => "https://opend.data.go.th/opend-search/vir_3277_1584880342/query?dsname=vir_3277_1584880342&path=vir_3277_1584880342&property=col_6&operator=CONTAINS&valueLiteral=%E0%B8%AA%E0%B8%87%E0%B8%82%E0%B8%A5%E0%B8%B2&loadAll=1&type=json&limit=100&offset=0",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
-    CURLOPT_HTTPHEADER => array(
-      "api-key: hInVZ9D2oFwD1oOAqDXIEHRl69DlDyW5"
-    ),
-  ));
-  
-
-$result_SKA=curl_exec($SKA);
-$err=curl_error($SKA);
-
-curl_close($SKA);
-
-if($err) {
-    echo 'cURL Error #:' . $err;
-}else{
-    $result_SKAA=json_decode($result_SKA, true);
-
-    // เอาตัวแปลที่ไม่ใช้ออก
-    unset($result_SKAA['data']);
-    unset($result_SKAA['message']);
-    unset($result_SKAA['status']);
-
-    $numSKA=$result_SKAA['numData'];
-    // print_r($result_SKAA);
-}
+$query="SELECT * FROM datas WHERE province LIKE '%สงขลา%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSKA=$row['count'];
+// print_r($row['province']);
 // end สงขลา
 
 // กทม
-$BKK=curl_init();
-
-curl_setopt_array($BKK, array(
-    CURLOPT_URL => "https://opend.data.go.th/opend-search/vir_3277_1584880342/query?dsname=vir_3277_1584880342&path=vir_3277_1584880342&property=col_6&operator=CONTAINS&valueLiteral=%E0%B8%81%E0%B8%97%E0%B8%A1&loadAll=1&type=json&limit=100&offset=0",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
-    CURLOPT_HTTPHEADER => array(
-      "api-key: hInVZ9D2oFwD1oOAqDXIEHRl69DlDyW5"
-    ),
-  ));
-  
-
-$result_BKK=curl_exec($BKK);
-$err=curl_error($BKK);
-
-curl_close($BKK);
-
-if($err){
-    echo 'cURL Error #:' . $err;
-}else{
-    $result_BKKA=json_decode($result_BKK, true);
-
-    // เอาตัวแปลที่ไม่ใช้ออก
-    unset($result_BKKA['data']);
-    unset($result_BKKA['message']);
-    unset($result_BKKA['status']);
-    
-    $numBKK=$result_BKKA['numData'];
-    // print_r($num);
-}
+$query="SELECT * FROM datas WHERE province LIKE '%กทม%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numBKK=$row['count'];
+// print_r($numBKK);
 // end กทม
 
 // กระบี่
-$KBI=curl_init();
-
-curl_setopt_array($KBI, array(
-    CURLOPT_URL => "https://opend.data.go.th/opend-search/vir_3277_1584880342/query?dsname=vir_3277_1584880342&path=vir_3277_1584880342&property=col_6&operator=CONTAINS&valueLiteral=%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B5%E0%B9%88&loadAll=1&type=json&limit=100&offset=0",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
-    CURLOPT_HTTPHEADER => array(
-      "api-key: hInVZ9D2oFwD1oOAqDXIEHRl69DlDyW5"
-    ),
-  ));
-  
-
-$result_KBI=curl_exec($KBI);
-$err=curl_error($KBI);
-
-curl_close($KBI);
-
-if($err){
-    echo 'cURL Error #:' . $err;
-}else{
-    $result_KBIA=json_decode($result_KBI, true);
-
-    // เอาตัวแปลที่ไม่ใช้ออก
-    unset($result_KBIA['data']);
-    unset($result_KBIA['message']);
-    unset($result_KBIA['status']);
-
-    $numKBI=$result_KBIA['numData'];
-    // print_r($num);
-}
+$query="SELECT * FROM datas WHERE province LIKE '%กระบี่%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numKBI=$row['count'];
+// print_r($row['province']);
 // end กระบี่
 
 // กาญจนบุรี
-$KRI=curl_init();
-
-curl_setopt_array($KRI, array(
-    CURLOPT_URL => "https://opend.data.go.th/opend-search/vir_3277_1584880342/query?dsname=vir_3277_1584880342&path=vir_3277_1584880342&property=col_6&operator=CONTAINS&valueLiteral=%E0%B8%81%E0%B8%B2%E0%B8%8D%E0%B8%88%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5&loadAll=1&type=json&limit=100&offset=0",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
-    CURLOPT_HTTPHEADER => array(
-      "api-key: hInVZ9D2oFwD1oOAqDXIEHRl69DlDyW5"
-    ),
-  ));
-  
-
-$result_KRI=curl_exec($KRI);
-$err=curl_error($KRI);
-
-curl_close($KRI);
-
-if($err){
-    echo 'cURL Error #:' . $err;
-}else{
-    $result_KRIA=json_decode($result_KRI, true);
-
-    // เอาตัวแปลที่ไม่ใช้ออก
-    unset($result_KRIA['data']);
-    unset($result_KRIA['message']);
-    unset($result_KRIA['status']);
-
-    $numKRI=$result_KRIA['numData'];
-    // print_r($numKRI);
-}
+$query="SELECT * FROM datas WHERE province LIKE '%กาญจนบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numKRI=$row['count'];
+// print_r($row['province']);
 // end กาญจนบุรี
 
+// กาฬสินธุ์
+$query="SELECT * FROM datas WHERE province LIKE '%กาฬสินธุ์%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numKSN=$row['count'];
+// print_r($row['province']);
+// end กาฬสินธุ์
+
+// ขอนแก่น
+$query="SELECT * FROM datas WHERE province LIKE '%ขอนแก่น%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numKKN=$row['count'];
+// print_r($row['province']);
+// end ขอนแก่น
+
+// จันทบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%จันทบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numCTI=$row['count'];
+// print_r($row['province']);
+// end จันทบุรี
+
+// ฉะเชิงเทรา
+$query="SELECT * FROM datas WHERE province LIKE '%ฉะเชิงเทรา%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numCCO=$row['count'];
+// print_r($row['province']);
+// end ฉะเชิงเทรา
+
+// ชลบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%ชลบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numCBI=$row['count'];
+// print_r($row['province']);
+// end ชลบุรี
+
+// ตรัง
+$query="SELECT * FROM datas WHERE province LIKE '%ตรัง%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numTRG=$row['count'];
+// print_r($row['province']);
+// end ตรัง
+
+// ตาก
+$query="SELECT * FROM datas WHERE province LIKE '%ตาก%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numTAK=$row['count'];
+// print_r($row['province']);
+// end ตาก
+
+// นครนายก
+$query="SELECT * FROM datas WHERE province LIKE '%นครนายก%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNYK=$row['count'];
+// print_r($row['province']);
+// end นครนายก
+
+// นครปฐม
+$query="SELECT * FROM datas WHERE province LIKE '%นครปฐม%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNPT=$row['count'];
+// print_r($row['province']);
+// end นครปฐม
+
+// นครราชสีมา
+$query="SELECT * FROM datas WHERE province LIKE '%นครราชสีมา%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNMA=$row['count'];
+// print_r($row['province']);
+// end นครราชสีมา
+
+// นครศรีธรรมราช
+$query="SELECT * FROM datas WHERE province LIKE '%นครศรีธรรมราช%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNST=$row['count'];
+// print_r($row['province']);
+// end นครศรีธรรมราช
+
+// นครสวรรค์
+$query="SELECT * FROM datas WHERE province LIKE '%นครสวรรค์%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNSN=$row['count'];
+// print_r($row['province']);
+// end นครสวรรค์
+
+// นนทบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%นนทบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNBI=$row['count'];
+// print_r($row['province']);
+// end นนทบุรี
+
+// นราธิวาส
+$query="SELECT * FROM datas WHERE province LIKE '%นราธิวาส%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNWT=$row['count'];
+// print_r($row['province']);
+// end นราธิวาส
+
+// บุรีรัมย์
+$query="SELECT * FROM datas WHERE province LIKE '%บุรีรัมย์%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numBRM=$row['count'];
+// print_r($row['province']);
+// end บุรีรัมย์
+
+// ปทุมธานี
+$query="SELECT * FROM datas WHERE province LIKE '%ปทุมธานี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPTE=$row['count'];
+// print_r($row['province']);
+// end ปทุมธานี
+
+// ประจวบคีรีขันธ์
+$query="SELECT * FROM datas WHERE province LIKE '%ประจวบคีรีขันธ์%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPKN=$row['count'];
+// print_r($row['province']);
+// end ประจวบคีรีขันธ์
+
+// ปราจีนบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%ปราจีนบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPRI=$row['count'];
+// print_r($row['province']);
+// end ปราจีนบุรี
+
+// ปัตตานี
+$query="SELECT * FROM datas WHERE province LIKE '%ปัตตานี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPTN=$row['count'];
+// print_r($row['province']);
+// end ปัตตานี
+
+// พัทลุง
+$query="SELECT * FROM datas WHERE province LIKE '%พัทลุง%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPLG=$row['count'];
+// print_r($row['province']);
+// end พัทลุง
+
+// ภูเก็ต
+$query="SELECT * FROM datas WHERE province LIKE '%ภูเก็ต%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPKT=$row['count'];
+// print_r($row['province']);
+// end ภูเก็ต
+
+// มุกดาหาร
+$query="SELECT * FROM datas WHERE province LIKE '%มุกดาหาร%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numMDH=$row['count'];
+// print_r($row['province']);
+// end มุกดาหาร
+
+// ยะลา
+$query="SELECT * FROM datas WHERE province LIKE '%ยะลา%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numYLA=$row['count'];
+// print_r($row['province']);
+// end ยะลา
+
+// ยโสธร
+$query="SELECT * FROM datas WHERE province LIKE '%ยโสธร%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numYST=$row['count'];
+// print_r($row['province']);
+// end ยโสธร
+
+// ร้อยเอ็ด
+$query="SELECT * FROM datas WHERE province LIKE '%ร้อยเอ็ด%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numRET=$row['count'];
+// print_r($row['province']);
+// end ร้อยเอ็ด
+
+// ระยอง
+$query="SELECT * FROM datas WHERE province LIKE '%ระยอง%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numRYG=$row['count'];
+// print_r($row['province']);
+// end ระยอง
+
+// ราชบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%ราชบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numRBR=$row['count'];
+// print_r($row['province']);
+// end ราชบุรี
+
+// ลพบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%ลพบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numLRI=$row['count'];
+// print_r($row['province']);
+// end ลพบุรี
+
+// ศรีสะเกษ
+$query="SELECT * FROM datas WHERE province LIKE '%ศรีสะเกษ%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSSK=$row['count'];
+// print_r($row['province']);
+// end ศรีสะเกษ
+
+// สมุทรปราการ
+$query="SELECT * FROM datas WHERE province LIKE '%สมุทรปราการ%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSPK=$row['count'];
+// print_r($row['province']);
+// end สมุทรปราการ
+
+// สมุทรสาคร
+$query="SELECT * FROM datas WHERE province LIKE '%สมุทรสาคร%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSKN=$row['count'];
+// print_r($row['province']);
+// end สมุทรสาคร
+
+// สระบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%สระบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSRI=$row['count'];
+// print_r($row['province']);
+// end สระบุรี
+
+// สระแก้ว
+$query="SELECT * FROM datas WHERE province LIKE '%สระแก้ว%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSKW=$row['count'];
+// print_r($row['province']);
+// end สระแก้ว
+
+// สุพรรณบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%สุพรรณบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSPB=$row['count'];
+// print_r($row['province']);
+// end สุพรรณบุรี
+
+// สุราษฎร์ธานี
+$query="SELECT * FROM datas WHERE province LIKE '%สุราษฎร์ธานี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSNI=$row['count'];
+// print_r($row['province']);
+// end สุราษฎร์ธานี
+
+// สุรินทร์
+$query="SELECT * FROM datas WHERE province LIKE '%สุรินทร์%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSRN=$row['count'];
+// print_r($row['province']);
+// end สุรินทร์
+
+// สุโขทัย
+$query="SELECT * FROM datas WHERE province LIKE '%สุโขทัย%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSTI=$row['count'];
+// print_r($row['province']);
+// end สุโขทัย
+
+// หนองบัวลำภู
+$query="SELECT * FROM datas WHERE province LIKE '%หนองบัวลำภู%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNBP=$row['count'];
+// print_r($row['province']);
+// end หนองบัวลำภู
+
+// อำนาจเจริญ
+$query="SELECT * FROM datas WHERE province LIKE '%อำนาจเจริญ%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numACR=$row['count'];
+// print_r($row['province']);
+// end อำนาจเจริญ
+
+// อุดรธานี
+$query="SELECT * FROM datas WHERE province LIKE '%อุดรธานี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numUDN=$row['count'];
+// print_r($row['province']);
+// end อุดรธานี
+
+// อุทัยธานี
+$query="SELECT * FROM datas WHERE province LIKE '%อุทัยธานี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numUTI=$row['count'];
+// print_r($row['province']);
+// end อุทัยธานี
+
+// อุบลราชธานี
+$query="SELECT * FROM datas WHERE province LIKE '%อุบลราชธานี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numUBN=$row['count'];
+// print_r($row['province']);
+// end อุบลราชธานี
+
+// เชียงราย
+$query="SELECT * FROM datas WHERE province LIKE '%เชียงราย%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numCRI=$row['count'];
+// print_r($row['province']);
+// end เชียงราย
+
+// เชียงใหม่
+$query="SELECT * FROM datas WHERE province LIKE '%เชียงใหม่%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numCMI=$row['count'];
+// print_r($row['province']);
+// end เชียงใหม่
+
+// เพชรบุรี
+$query="SELECT * FROM datas WHERE province LIKE '%เพชรบุรี%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPBI=$row['count'];
+// print_r($row['province']);
+// end เพชรบุรี
+
+// เพชรบูรณ์
+$query="SELECT * FROM datas WHERE province LIKE '%เพชรบูรณ์%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPNB=$row['count'];
+// print_r($row['province']);
+// end เพชรบูรณ์
+
+// เลย
+$query="SELECT * FROM datas WHERE province LIKE '%เลย%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numLEI=$row['count'];
+// print_r($row['province']);
+// end เลย
+
+// แพร่
+$query="SELECT * FROM datas WHERE province LIKE '%แพร่%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPRE=$row['count'];
+// print_r($row['province']);
+// end แพร่
 
 $API_URL='https://api.line.me/v2/bot/message';
 $ACCESS_TOKEN='WOfdLO0zrknLHtaUEsiMtIYyWqkwgH/fduaiPoZ/xEhgrc+7cb8pTE8VvWjHaKI245/dfCTPfnUF0wPB1pjZickBFBZP9V4t7Z5Ip8boou2yFuBgjChqJv6Lq4eD0eG3ptBUbBWOmuov4lKmd54VfAdB04t89/1O/w1cDnyilFU='; 
 $channelSecret='cd1fca4e7a488c02d9b704f76a845fd0';
-
 
 $POST_HEADER=array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
 
 $request=file_get_contents('php://input');   // Get request content
 $request_array=json_decode($request, true);   // Decode JSON to Array
 
+// Original
+// $report = [
+//             'type'=>'flex',
+//             'altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้',
+//             'contents'=>[
+//                 'type'=>'bubble',
+//                 'header'=>[
+//                     'type'=>'box',
+//                     'layout'=>'vertical',
+//                     'contents'=>[
+//                     [
+//                         'type'=>'text',
+//                         'text'=>'รายงานสถานการณ์ COVID-19',
+//                         'size'=>'md',
+//                         'weight'=>'bold',
+//                         'color'=>'#ffffff'
+//                     ],
+//                     [
+//                         'type'=>'text',
+//                         'text'=>'ประเทศไทย',
+//                         'size'=>'xs',
+//                         'color'=>'#dddddd',
+//                         'wrap'=>true
+//                     ]
+//                     ],'backgroundColor'=>'#0367D3',
+//                 ],
+//                 'body'=>[
+//                         'type'=>'box',
+//                         'layout'=>'vertical',
+//                         'contents'=>[
+//                             [
+//                                 'type'=>'box',
+//                                 'layout'=>'baseline',
+//                                 'margin'=>'lg',
+//                                 'contents'=>[
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>'ผู้ติดเชื้อ',
+//                                 'weight'=>'bold',
+//                                 'size'=>'sm',
+//                                 'align'=>'start',
+//                                 'color'=>'#EFDC05',
+//                                 'flex'=>0
+//                             ],
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>$cases,
+//                                 'weight'=>'bold',
+//                                 'size'=>'sm',
+//                                 'align'=>'end',
+//                                 'color'=>'#EFDC05'
+//                             ]
+//                             ]
+//                         ],
+//                         [
+//                         'type'=>'box',
+//                         'layout'=>'baseline',
+//                         'margin'=>'lg',
+//                         'contents'=>[
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>'ผู้ป่วยใหม่',
+//                                 'weight'=>'bold',
+//                                 'size'=>'sm',
+//                                 'align'=>'start',
+//                                 'color'=>'#555555',
+//                                 'flex'=>0
+//                             ],
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>$new_cases,
+//                                 'weight'=>'bold',
+//                                 'size'=>'sm',
+//                                 'align'=>'end',
+//                                 'color'=>'#555555'
+//                             ]
+//                             ]   
+//                         ],
+//                         [
+//                         'type'=>'box',
+//                         'layout'=>'baseline',
+//                         'margin'=>'lg',
+//                         'contents'=>[
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>'กำลังรักษา',
+//                                 'size'=>'sm',
+//                                 'color'=>'#555555',
+//                                 'flex'=>0
+//                             ],
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>$active_cases,
+//                                 'color'=>'#566270',
+//                                 'align'=>'end'
+//                             ]
+//                             ]
+//                         ],
+//                         [
+//                         'type'=>'box',
+//                         'layout'=>'baseline',
+//                         'margin'=>'lg',
+//                         'contents'=>[
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>'รักษาหาย',
+//                                 'size'=>'sm',
+//                                 'color'=>'#555555',
+//                                 'flex'=>0
+//                             ],
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>$total_recovered,
+//                                 'color'=>'#566270',
+//                                 'align'=>'end'
+//                             ]
+//                             ]
+//                         ],
+//                         [
+//                         'type'=>'box',
+//                         'layout'=>'baseline',
+//                         'margin'=>'lg',
+//                         'contents'=>[
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>'อาการรุนแรง',
+//                                 'weight'=>'bold',
+//                                 'size'=>'sm',
+//                                 'align'=>'start',
+//                                 'color'=>'#555555',
+//                                 'flex'=>0
+//                             ],
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>$serious_critical,
+//                                 'weight'=>'bold',
+//                                 'size'=>'sm',
+//                                 'align'=>'end',
+//                                 'color'=>'#566270'
+//                             ]
+//                             ]
+//                         ],
+//                         [
+//                         'type'=>'box',
+//                         'layout'=>'baseline',
+//                         'margin'=>'lg',
+//                         'contents'=>[
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>'เสียชีวิต',
+//                                 'size'=>'sm',
+//                                 'align'=>'start',
+//                                 'color'=>'#E53A40',
+//                                 'flex'=>0
+//                             ],
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>$deaths,
+//                                 'size'=>'sm',
+//                                 'align'=>'end',
+//                                 'color'=>'#EC7357'
+//                             ]
+//                             ]
+//                         ],
+//                         [
+//                             'type'=>'separator',
+//                             'margin'=>'xxl'
+//                         ],
+//                         [
+//                         'type'=>'box',
+//                         'layout'=>'horizontal',
+//                         'margin'=>'md',
+//                         'contents'=>[
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>'ข้อมูล Real Time จาก rapidapi.com',
+//                                 'size'=>'xs',
+//                                 'color'=>'#aaaaaa',
+//                                 'flex'=>0
+//                             ]
+//                             ]
+//                         ]
+//                     ]
+//                 ]
+//             ]
+//         ];
+// End Original
+
 // report all
-$report = [
-            'type' => 'flex',
-            'altText' => 'รายงานสถานการณ์ COVID-19 ตอนนี้',
-            'contents' => [
-                'type' => 'bubble',
-                'header' => [
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'contents' => [
-                    [
-                        'type' => 'text',
-                        'text' => 'รายงานสถานการณ์ COVID-19',
-                        'size' => 'md',
-                        'weight' => 'bold',
-                        'color' => '#ffffff'
-                    ],
-                    [
-                        'type' => 'text',
-                        'text' => 'ประเทศไทย',
-                        'size' => 'xs',
-                        'color' => '#dddddd',
-                        'wrap' => true
-                    ]
-                    ],
-                    'backgroundColor' => '#0367D3',
-                ],
-                'body' => [
-                        'type' => 'box',
-                        'layout' => 'vertical',
-                        'contents' => [
-                            [
-                                'type' => 'box',
-                                'layout' => 'baseline',
-                                'margin' => 'lg',
-                                'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'ผู้ติดเชื้อ',
-                                'weight' => 'bold',
-                                'size' => 'sm',
-                                'align' => 'start',
-                                'color' => '#EFDC05',
-                                'flex' => 0
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $cases,
-                                'weight' => 'bold',
-                                'size' => 'sm',
-                                'align' => 'end',
-                                'color' => '#EFDC05'
-                            ]
-                            ]
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'baseline',
-                        'margin' => 'lg',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'ผู้ป่วยใหม่',
-                                'weight' => 'bold',
-                                'size' => 'sm',
-                                'align' => 'start',
-                                'color' => '#555555',
-                                'flex' => 0
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $new_cases,
-                                'weight' => 'bold',
-                                'size' => 'sm',
-                                'align' => 'end',
-                                'color' => '#555555'
-                            ]
-                            ]   
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'baseline',
-                        'margin' => 'lg',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'กำลังรักษา',
-                                'size' => 'sm',
-                                'color' => '#555555',
-                                'flex' => 0
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $active_cases,
-                                'color' => '#566270',
-                                'align' => 'end'
-                            ]
-                            ]
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'baseline',
-                        'margin' => 'lg',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'รักษาหาย',
-                                'size' => 'sm',
-                                'color' => '#555555',
-                                'flex' => 0
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $total_recovered,
-                                'color' => '#566270',
-                                'align' => 'end'
-                            ]
-                            ]
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'baseline',
-                        'margin' => 'lg',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'อาการรุนแรง',
-                                'weight' => 'bold',
-                                'size' => 'sm',
-                                'align' => 'start',
-                                'color' => '#555555',
-                                'flex' => 0
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $serious_critical,
-                                'weight' => 'bold',
-                                'size' => 'sm',
-                                'align' => 'end',
-                                'color' => '#566270'
-                            ]
-                            ]
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'baseline',
-                        'margin' => 'lg',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'เสียชีวิต',
-                                'size' => 'sm',
-                                'align' => 'start',
-                                'color' => '#E53A40',
-                                'flex' => 0
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $deaths,
-                                'size' => 'sm',
-                                'align' => 'end',
-                                'color' => '#EC7357'
-                            ]
-                            ]
-                        ],
-                        [
-                            'type' => 'separator',
-                            'margin' => 'xxl'
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'horizontal',
-                        'margin' => 'md',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'ข้อมูล Real Time จาก rapidapi.com',
-                                'size' => 'xs',
-                                'color' => '#aaaaaa',
-                                'flex' => 0
-                            ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
+$report=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'ประเทศไทย','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#EFDC05','flex'=>0],['type'=>'text','text'=>$cases,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#EFDC05']]],['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ป่วยใหม่','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$new_cases,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]   ],['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'กำลังรักษา','size'=>'sm','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$active_cases,'color'=>'#566270','align'=>'end']]],['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'รักษาหาย','size'=>'sm','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$total_recovered,'color'=>'#566270','align'=>'end']]],['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'อาการรุนแรง','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$serious_critical,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#566270']]],['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'เสียชีวิต','size'=>'sm','align'=>'start','color'=>'#E53A40','flex'=>0],['type'=>'text','text'=>$deaths,'size'=>'sm','align'=>'end','color'=>'#EC7357']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก rapidapi.com','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // report all
 
+
+// Original
+// $reportSKA = [
+//             'type'=>'flex',
+//             'altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้',
+//             'contents'=>[
+//                 'type'=>'bubble',
+//                 'header'=>[
+//                     'type'=>'box',
+//                     'layout'=>'vertical',
+//                     'contents'=>[
+//                     [
+//                         'type'=>'text',
+//                         'text'=>'รายงานสถานการณ์ COVID-19',
+//                         'size'=>'md',
+//                         'weight'=>'bold',
+//                         'color'=>'#ffffff'
+//                     ],
+//                     [    
+//                         'type'=>'text',
+//                         'text'=>'จังหวัดสงขลา',
+//                         'size'=>'xs',
+//                         'color'=>'#dddddd',
+//                         'wrap'=>true
+//                     ]
+//                     ],
+//                     'backgroundColor'=>'#0367D3',
+//                 ],
+//                 'body'=>[
+//                     'type'=>'box',
+//                     'layout'=>'vertical',
+//                     'contents'=>[
+//                         [
+//                             'type'=>'box',
+//                             'layout'=>'baseline',
+//                             'margin'=>'lg',
+//                             'contents'=>[
+//                                 [
+//                                     'type'=>'text',
+//                                     'text'=>'ผู้ติดเชื้อ',
+//                                     'weight'=>'bold',
+//                                     'size'=>'sm',
+//                                     'align'=>'start',
+//                                     'color'=>'#555555',
+//                                     'flex'=>0
+//                                 ],
+//                                 [
+//                                     'type'=>'text',
+//                                     'text'=>$numSKA,
+//                                     'weight'=>'bold',
+//                                     'size'=>'sm',
+//                                     'align'=>'end',
+//                                     'color'=>'#555555'
+//                                 ]
+//                             ]
+//                         ],
+//                         [
+//                             'type'=>'separator',
+//                             'margin'=>'xxl'
+//                         ],
+//                         [
+//                         'type'=>'box',
+//                         'layout'=>'horizontal',
+//                         'margin'=>'md',
+//                         'contents'=>[
+//                             [
+//                                 'type'=>'text',
+//                                 'text'=>'ข้อมูล Real Time จาก opend.data.go.th',
+//                                 'size'=>'xs',
+//                                 'color'=>'#aaaaaa',
+//                                 'flex'=>0
+//                             ]
+//                             ]
+//                         ]
+//                     ]
+//                 ]
+//             ]
+//         ];
+// End orginal
 
 // สงขลา
-$reportSKA = [
-            'type' => 'flex',
-            'altText' => 'รายงานสถานการณ์ COVID-19 ตอนนี้',
-            'contents' => [
-                'type' => 'bubble',
-                'header' => [
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'contents' => [
-                    [
-                        'type' => 'text',
-                        'text' => 'รายงานสถานการณ์ COVID-19',
-                        'size' => 'md',
-                        'weight' => 'bold',
-                        'color' => '#ffffff'
-                    ],
-                    [    
-                        'type' => 'text',
-                        'text' => 'จังหวัดสงขลา',
-                        'size' => 'xs',
-                        'color' => '#dddddd',
-                        'wrap' => true
-                    ]
-                    ],
-                    'backgroundColor' => '#0367D3',
-                ],
-                'body' => [
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'contents' => [
-                        [
-                            'type' => 'box',
-                            'layout' => 'baseline',
-                            'margin' => 'lg',
-                            'contents' => [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'ผู้ติดเชื้อ',
-                                    'weight' => 'bold',
-                                    'size' => 'sm',
-                                    'align' => 'start',
-                                    'color' => '#555555',
-                                    'flex' => 0
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => $numSKA,
-                                    'weight' => 'bold',
-                                    'size' => 'sm',
-                                    'align' => 'end',
-                                    'color' => '#555555'
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'separator',
-                            'margin' => 'xxl'
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'horizontal',
-                        'margin' => 'md',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'ข้อมูล Real Time จาก opend.data.go.th',
-                                'size' => 'xs',
-                                'color' => '#aaaaaa',
-                                'flex' => 0
-                            ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
+$reportSKA = ['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสงขลา','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSKA,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end สงขลา
 
 // กทม
-$reportBKK = [
-            'type' => 'flex',
-            'altText' => 'รายงานสถานการณ์ COVID-19 ตอนนี้',
-            'contents' => [
-                'type' => 'bubble',
-                'header' => [
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'contents' => [
-                    [
-                        'type' => 'text',
-                        'text' => 'รายงานสถานการณ์ COVID-19',
-                        'size' => 'md',
-                        'weight' => 'bold',
-                        'color' => '#ffffff'
-                    ],
-                    [   
-                        'type' => 'text',
-                        'text' => 'กรุงเทพมหานคร',
-                        'size' => 'xs',
-                        'color' => '#dddddd',
-                        'wrap' => true
-                    ]
-                    ],
-                    'backgroundColor' => '#0367D3',
-                ],
-                'body' => [
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'contents' => [
-                        [
-                            'type' => 'box',
-                            'layout' => 'baseline',
-                            'margin' => 'lg',
-                            'contents' => [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'ผู้ติดเชื้อ',
-                                    'weight' => 'bold',
-                                    'size' => 'sm',
-                                    'align' => 'start',
-                                    'color' => '#555555',
-                                    'flex' => 0
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => $numBKK,
-                                    'weight' => 'bold',
-                                    'size' => 'sm',
-                                    'align' => 'end',
-                                    'color' => '#555555'
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'separator',
-                            'margin' => 'xxl'
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'horizontal',
-                        'margin' => 'md',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'ข้อมูล Real Time จาก opend.data.go.th',
-                                'size' => 'xs',
-                                'color' => '#aaaaaa',
-                                'flex' => 0
-                            ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
+$reportBKK = ['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'กรุงเทพมหานคร','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numBKK,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end กทม
 
 // กระบี่
-$reportKBI = [
-            'type' => 'flex',
-            'altText' => 'รายงานสถานการณ์ COVID-19 ตอนนี้',
-            'contents' => [
-                'type' => 'bubble',
-                'header' => [
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'contents' => [
-                    [
-                        'type' => 'text',
-                        'text' => 'รายงานสถานการณ์ COVID-19',
-                        'size' => 'md',
-                        'weight' => 'bold',
-                        'color' => '#ffffff'
-                    ],
-                    [  
-                        'type' => 'text',
-                        'text' => 'จังหวัดกระบี่',
-                        'size' => 'xs',
-                        'color' => '#dddddd',
-                        'wrap' => true
-                    ]
-                    ],
-                    'backgroundColor' => '#0367D3',
-                ],
-                'body' => [
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'contents' => [
-                        [
-                            'type' => 'box',
-                            'layout' => 'baseline',
-                            'margin' => 'lg',
-                            'contents' => [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'ผู้ติดเชื้อ',
-                                    'weight' => 'bold',
-                                    'size' => 'sm',
-                                    'align' => 'start',
-                                    'color' => '#555555',
-                                    'flex' => 0
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => $numKBI,
-                                    'weight' => 'bold',
-                                    'size' => 'sm',
-                                    'align' => 'end',
-                                    'color' => '#555555'
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'separator',
-                            'margin' => 'xxl'
-                        ],
-                        [
-                        'type' => 'box',
-                        'layout' => 'horizontal',
-                        'margin' => 'md',
-                        'contents' => [
-                            [
-                                'type' => 'text',
-                                'text' => 'ข้อมูล Real Time จาก opend.data.go.th',
-                                'size' => 'xs',
-                                'color' => '#aaaaaa',
-                                'flex' => 0
-                            ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
+$reportKBI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดกระบี่','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numKBI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end กระบี่
 
 // กาญจนบุรี
-$reportKRI = [
-    'type' => 'flex',
-    'altText' => 'รายงานสถานการณ์ COVID-19 ตอนนี้',
-    'contents' => [
-        'type' => 'bubble',
-        'header' => [
-            'type' => 'box',
-            'layout' => 'vertical',
-            'contents' => [
-            [
-                'type' => 'text',
-                'text' => 'รายงานสถานการณ์ COVID-19',
-                'size' => 'md',
-                'weight' => 'bold',
-                'color' => '#ffffff'
-            ],
-            [  
-                'type' => 'text',
-                'text' => 'จังหวัดกาญจนบุรี',
-                'size' => 'xs',
-                'color' => '#dddddd',
-                'wrap' => true
-            ]
-            ],
-            'backgroundColor' => '#0367D3',
-        ],
-        'body' => [
-            'type' => 'box',
-            'layout' => 'vertical',
-            'contents' => [
-                [
-                    'type' => 'box',
-                    'layout' => 'baseline',
-                    'margin' => 'lg',
-                    'contents' => [
-                        [
-                            'type' => 'text',
-                            'text' => 'ผู้ติดเชื้อ',
-                            'weight' => 'bold',
-                            'size' => 'sm',
-                            'align' => 'start',
-                            'color' => '#555555',
-                            'flex' => 0
-                        ],
-                        [
-                            'type' => 'text',
-                            'text' => $numKRI,
-                            'weight' => 'bold',
-                            'size' => 'sm',
-                            'align' => 'end',
-                            'color' => '#555555'
-                        ]
-                    ]
-                ],
-                [
-                    'type' => 'separator',
-                    'margin' => 'xxl'
-                ],
-                [
-                'type' => 'box',
-                'layout' => 'horizontal',
-                'margin' => 'md',
-                'contents' => [
-                    [
-                        'type' => 'text',
-                        'text' => 'ข้อมูล Real Time จาก opend.data.go.th',
-                        'size' => 'xs',
-                        'color' => '#aaaaaa',
-                        'flex' => 0
-                    ]
-                    ]
-                ]
-            ]
-        ]
-    ]
-];
+$reportKRI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดกาญจนบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numKRI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end กาญจนบุรี
 
+// กาฬสินธุ์
+$reportKSN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดกาฬสินธุ์','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numKSN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end กาฬสินธุ์
+
+// ขอนแก่น
+$reportKKN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดขอนแก่น','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numKKN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ขอนแก่น
+
+// จันทบุรี
+$reportCTI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดจันทบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numCTI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end จันทบุรี
+
+// ฉะเชิงเทรา
+$reportCCO=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดฉะเชิงเทรา','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numCCO,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ฉะเชิงเทรา
+
+// ชลบุรี
+$reportCBI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดชลบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numCBI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ชลบุรี
+
+// ตรัง
+$reportTRG=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดตรัง','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numTRG,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ตรัง
+
+// ตาก
+$reportTAK=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดตาก','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numTAK,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ตาก
+
+// นครนายก
+$reportNYK=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนครนายก','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNYK,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end นครนายก
+
+// นครปฐม
+$reportNPT=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนครปฐม','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNPT,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end นครปฐม
+
+// นครราชสีมา
+$reportNMA=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนครราชสีมา','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNMA,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end นครราชสีมา
+
+// นครศรีธรรมราช
+$reportNST=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนครศรีธรรมราช','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNST,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end นครศรีธรรมราช
+
+// นครสวรรค์
+$reportNSN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนครสวรรค์','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNSN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end นครสวรรค์
+
+// นนทบุรี
+$reportNBI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนนทบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNBI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end นนทบุรี
+
+// นราธิวาส
+$reportNWT=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนราธิวาส','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNWT,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end นราธิวาส
+
+// บุรีรัมย์
+$reportBRM=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดบุรีรัมย์','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numBRM,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end บุรีรัมย์
+
+// ปทุมธานี
+$reportPTE=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดปทุมธานี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPTE,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ปทุมธานี
+
+// ประจวบคีรีขันธ์
+$reportPKN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดประจวบคีรีขันธ์','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPKN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ประจวบคีรีขันธ์
+
+// ปราจีนบุรี
+$reportPRI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดปราจีนบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPRI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ปราจีนบุรี
+
+// ปัตตานี
+$reportPTN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดปัตตานี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPTN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ปัตตานี
+
+// พัทลุง
+$reportPLG=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดพัทลุง','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPLG,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end พัทลุง
+
+// ภูเก็ต
+$reportPKT=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดภูเก็ต','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPKT,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ภูเก็ต
+
+// มุกดาหาร
+$reportMDH=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดมุกดาหาร','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numMDH,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end มุกดาหาร
+
+// ยะลา
+$reportYLA=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดยะลา','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numYLA,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ยะลา
+
+// ยโสธร
+$reportYST=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดยโสธร','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numYST,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ยโสธร
+
+// ร้อยเอ็ด
+$reportRET=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดร้อยเอ็ด','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numRET,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ร้อยเอ็ด
+
+// ระยอง
+$reportRYG=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดระยอง','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numRYG,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ระยอง
+
+// ราชบุรี
+$reportRBR=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดราชบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numRBR,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ราชบุรี
+
+// ลพบุรี
+$reportLRI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดลพบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numLRI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ลพบุรี
+
+// ศรีสะเกษ
+$reportSSK=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดศรีสะเกษ','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSSK,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ศรีสะเกษ
+
+// สมุทรปราการ
+$reportSPK=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสมุทรปราการ','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSPK,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สมุทรปราการ
+
+// สมุทรสาคร
+$reportSKN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสมุทรสาคร','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSKN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สมุทรสาคร
+
+// สระบุรี
+$reportSRI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสระบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSRI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สระบุรี
+
+// สระแก้ว
+$reportSKW=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสระแก้ว','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSKW,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สระแก้ว
+
+// สุพรรณบุรี
+$reportSPB=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสุพรรณบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSPB,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สุพรรณบุรี
+
+// สุราษฎร์ธานี
+$reportSNI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสุราษฎร์ธานี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSNI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สุราษฎร์ธานี
+
+// สุรินทร์
+$reportSRN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสุรินทร์','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSRN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สุรินทร์
+
+// สุโขทัย
+$reportSTI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสุโขทัย','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSTI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สุโขทัย
+
+// หนองบัวลำภู
+$reportNBP=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดหนองบัวลำภู','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNBP,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end หนองบัวลำภู
+
+// อำนาจเจริญ
+$reportACR=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดอำนาจเจริญ','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numACR,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end อำนาจเจริญ
+
+// อุดรธานี
+$reportUDN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดอุดรธานี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numUDN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end อุดรธานี
+
+// อุทัยธานี
+$reportUTI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดอุทัยธานี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numUTI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end อุทัยธานี
+
+// อุบลราชธานี
+$reportUBN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดอุบลราชธานี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numUBN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end อุบลราชธานี
+
+// เชียงราย
+$reportCRI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดเชียงราย','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numCRI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end เชียงราย
+
+// เชียงใหม่
+$reportCMI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดเชียงใหม่','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numCMI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end เชียงใหม่
+
+// เพชรบุรี
+$reportPBI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดเพชรบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPBI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end เพชรบุรี
+
+// เพชรบูรณ์
+$reportPNB=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดเพชรบูรณ์','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPNB,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end เพชรบูรณ์
+
+// เลย
+$reportLEI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดเลย','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numLEI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end เลย
+
+// แพร่
+$reportPRE=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดแพร่','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPRE,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end แพร่
 
 
-if($request_array['events'] > 0){
+if($request_array['events']>0){
     foreach($request_array['events'] as $event){
         error_log(json_encode($event));
         $reply_message='';
         $reply_token=$event['replyToken'];
         $text=$event['message']['text'];
 
-        if($text=='รายงานสถานการณ์') {
+        if($text=='รายงานสถานการณ์'){
             $data=[
-                'replyToken' => $reply_token,
-                'messages' => [$report]
+                'replyToken'=>$reply_token,
+                'messages'=>[$report]
             ];
-        }elseif($text=='จังหวัดสงขลา') {
+        }elseif($text=='สงขลา'){
             $data = [
-                'replyToken' => $reply_token,
-                'messages' => [$reportSKA]
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSKA]
             ];
-        }elseif($text=='กรุงเทพมหานคร') {
+        }elseif($text=='กทม'){
             $data=[
-                'replyToken' => $reply_token,
-                'messages' => [$reportBKK]
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportBKK]
             ];
-        }elseif($text=='จังหวัดกระบี่') {
+        }elseif($text=='กระบี่'){
             $data=[
-                'replyToken' => $reply_token,
-                'messages' => [$reportKBI]
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportKBI]
             ];
-        }elseif ($text=='จังหวัดกาญจนบุรี') {
+        }elseif($text=='กาญจนบุรี') {
             $data=[
-                'replyToken' => $reply_token,
-                'messages' => [$reportKRI]
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportKRI]
+            ];
+        }elseif($text=='กาฬสินธุ์') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportKSN]
+            ];
+        }elseif($text=='กำแพงเพชร') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportKPT]
+            ];
+        }elseif($text=='ขอนแก่น') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportKKN]
+            ];
+        }elseif($text=='จันทบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportCTI]
+            ];
+        }elseif($text=='ฉะเชิงเทรา') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportCCO]
+            ];
+        }elseif($text=='ชลบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportCBI]
+            ];
+        }elseif($text=='ตรัง') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportTRG]
+            ];
+        }elseif($text=='ตาก') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportTAK]
+            ];
+        }elseif($text=='นครนายก') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNYK]
+            ];
+        }elseif($text=='นครปฐม') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNPT]
+            ];
+        }elseif($text=='นครราชสีมา') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNMA]
+            ];
+        }elseif($text=='นครศรีธรรมราช') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNST]
+            ];
+        }elseif($text=='นครสวรรค์') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNSN]
+            ];
+        }elseif($text=='นนทบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNBI]
+            ];
+        }elseif($text=='นราธิวาส') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNWT]
+            ];
+        }elseif($text=='บุรีรัมย์') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportBRM]
+            ];
+        }elseif($text=='ปทุมธานี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPTE]
+            ];
+        }elseif($text=='ประจวบคีรีขันธ์') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPKN]
+            ];
+        }elseif($text=='ปราจีนบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPRI]
+            ];
+        }elseif($text=='ปัตตานี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPTN]
+            ];
+        }elseif($text=='พัทลุง') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPLG]
+            ];
+        }elseif($text=='ภูเก็ต') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPKT]
+            ];
+        }elseif($text=='มุกดาหาร') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportMDH]
+            ];
+        }elseif($text=='ยะลา') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportYLA]
+            ];
+        }elseif($text=='ยโสธร') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportYST]
+            ];
+        }elseif($text=='ร้อยเอ็ด') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportRET]
+            ];
+        }elseif($text=='ระยอง') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportRYG]
+            ];
+        }elseif($text=='ราชบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportRBR]
+            ];
+        }elseif($text=='ลพบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportLRI]
+            ];
+        }elseif($text=='ศรีสะเกษ') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSSK]
+            ];
+        }elseif($text=='สมุทรปราการ') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSPK]
+            ];
+        }elseif($text=='สมุทรสาคร') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSKN]
+            ];
+        }elseif($text=='สระบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSRI]
+            ];
+        }elseif($text=='สระแก้ว') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSKW]
+            ];
+        }elseif($text=='สุพรรณบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSPB]
+            ];
+        }elseif($text=='สุราษฎร์ธานี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSNI]
+            ];
+        }elseif($text=='สุรินทร์') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSRN]
+            ];
+        }elseif($text=='สุโขทัย') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSTI]
+            ];
+        }elseif($text=='หนองบัวลำภู') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNBP]
+            ];
+        }elseif($text=='อำนาจเจริญ') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportACR]
+            ];
+        }elseif($text=='อุดรธานี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportUDN]
+            ];
+        }elseif($text=='อุทัยธานี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportUTI]
+            ];
+        }elseif($text=='อุบลราชธานี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportUBN]
+            ];
+        }elseif($text=='เชียงราย') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportCRI]
+            ];
+        }elseif($text=='เชียงใหม่') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportCMI]
+            ];
+        }elseif($text=='เพชรบุรี') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPBI]
+            ];
+        }elseif($text=='เพชรบูรณ์') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPNB]
+            ];
+        }elseif($text=='เลย') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportLEI]
+            ];
+        }elseif($text=='แพร่') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPRE]
             ];
         }
 
@@ -886,7 +1367,13 @@ function send_reply_message($url, $post_header, $post_body)
     <div class="row">
         <div class="mx-auto col-md-offset-4 mt-4">
             <select class="form-control" name="province" id="msg">
-                <?php include('option-city.php'); ?>
+                <option>กรุณาเลือกจังหวัด</option>
+                <?php 
+                    $query="SELECT * FROM datas GROUP BY province ORDER BY province ASC";
+                    $result=mysqli_query($conn, $query);
+                    while ($row = mysqli_fetch_array($result)) { ?>
+                    <option><?php echo $row['province'];?></option>
+                    <?php } ?>
             </select>
             <input class="btn btn-primary" style="width:90%;" id="ButtonSendMsg" type="submit" name="submit" value="ตกลง">
         </div>
