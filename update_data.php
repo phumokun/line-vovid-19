@@ -106,7 +106,7 @@ if(isset($_POST['submit_report'])){
 // update data province
 $update=curl_init();
 curl_setopt_array($update, array(
-    CURLOPT_URL => "https://opend.data.go.th/opend-search/vir_3277_1584880342/agg?dsname=vir_3277_1584880342&path=vir_3277_1584880342&aggf=count&agg_prop=col_6&groupby=col_6&orderby=desc&loadAll=1&type=json&limit=100&offset=0",
+    CURLOPT_URL => "https://opend.data.go.th/opend-search/vir_3277_1584880342/agg?dsname=vir_3277_1584880342&path=vir_3277_1584880342&aggf=count&agg_prop=col_5&groupby=col_5&orderby=desc&loadAll=1&type=json&limit=100&offset=0",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

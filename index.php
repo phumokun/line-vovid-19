@@ -114,6 +114,15 @@ $numCPM=$row['count'];
 $reportCPM=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดชัยภูมิ','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numCPM,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end ชัยภูมิ
 
+// ชุมพร
+$query="SELECT * FROM datas WHERE province LIKE '%ชุมพร%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numCPN=$row['count'];
+// print_r($row['province']);
+$reportCPN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดชุมพร','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numCPN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ชุมพร
+
 // ตรัง
 $query="SELECT * FROM datas WHERE province LIKE '%ตรัง%' ORDER BY id DESC LIMIT 0,1";
 $result=mysqli_query($conn, $query);
@@ -149,6 +158,15 @@ $numNPT=$row['count'];
 // print_r($row['province']);
 $reportNPT=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนครปฐม','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNPT,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end นครปฐม
+
+// นครพนม
+$query="SELECT * FROM datas WHERE province LIKE '%นครพนม%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numNPM=$row['count'];
+// print_r($row['province']);
+$reportNPM=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดนครพนม','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numNPM,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end นครพนม
 
 // นครราชสีมา
 $query="SELECT * FROM datas WHERE province LIKE '%นครราชสีมา%' ORDER BY id DESC LIMIT 0,1";
@@ -277,6 +295,15 @@ $numPKT=$row['count'];
 $reportPKT=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดภูเก็ต','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPKT,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end ภูเก็ต
 
+// มหาสารคาม
+$query="SELECT * FROM datas WHERE province LIKE '%มหาสารคาม%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numMKM=$row['count'];
+// print_r($row['province']);
+$reportMKM=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดมหาสารคาม','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numMKM,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end มหาสารคาม
+
 // มุกดาหาร
 $query="SELECT * FROM datas WHERE province LIKE '%มุกดาหาร%' ORDER BY id DESC LIMIT 0,1";
 $result=mysqli_query($conn, $query);
@@ -339,6 +366,15 @@ $numLRI=$row['count'];
 // print_r($row['province']);
 $reportLRI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดลพบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numLRI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end ลพบุรี
+
+// ลำพูน
+$query="SELECT * FROM datas WHERE province LIKE '%ลำพูน%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numLPN=$row['count'];
+// print_r($row['province']);
+$reportLPN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดลำพูน','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numLPN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ลำพูน
 
 // ศรีสะเกษ
 $query="SELECT * FROM datas WHERE province LIKE '%ศรีสะเกษ%' ORDER BY id DESC LIMIT 0,1";
@@ -456,6 +492,15 @@ $numUDN=$row['count'];
 // print_r($row['province']);
 $reportUDN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดอุดรธานี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numUDN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end อุดรธานี
+
+// อุตรดิตถ์
+$query="SELECT * FROM datas WHERE province LIKE '%อุตรดิตถ์%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numUTT=$row['count'];
+// print_r($row['province']);
+$reportUTT=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดอุตรดิตถ์','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numUTT,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end อุตรดิตถ์
 
 // อุทัยธานี
 $query="SELECT * FROM datas WHERE province LIKE '%อุทัยธานี%' ORDER BY id DESC LIMIT 0,1";
@@ -606,6 +651,11 @@ if($request_array['events']>0){
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportCPM]
             ];
+        }elseif($text=='ชุมพร') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportCPN]
+            ];
         }elseif($text=='ตรัง') {
             $data=[
                 'replyToken'=>$reply_token,
@@ -625,6 +675,11 @@ if($request_array['events']>0){
             $data=[
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportNPT]
+            ];
+        }elseif($text=='นครพนม') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportNPM]
             ];
         }elseif($text=='นครราชสีมา') {
             $data=[
@@ -696,6 +751,11 @@ if($request_array['events']>0){
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportPKT]
             ];
+        }elseif($text=='มหาสารคาม') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportMKM]
+            ];
         }elseif($text=='มุกดาหาร') {
             $data=[
                 'replyToken'=>$reply_token,
@@ -730,6 +790,11 @@ if($request_array['events']>0){
             $data=[
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportLRI]
+            ];
+        }elseif($text=='ลำพูน') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportLPN]
             ];
         }elseif($text=='ศรีสะเกษ') {
             $data=[
@@ -795,6 +860,11 @@ if($request_array['events']>0){
             $data=[
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportUDN]
+            ];
+        }elseif($text=='อุตรดิตถ์') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportUTT]
             ];
         }elseif($text=='อุทัยธานี') {
             $data=[
