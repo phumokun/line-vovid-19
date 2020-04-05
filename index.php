@@ -268,6 +268,15 @@ $numPYO=$row['count'];
 $reportPYO=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดพะเยา','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPYO,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end พะเยา
 
+// พระนครศรีอยุธยา
+$query="SELECT * FROM datas WHERE province LIKE '%พระนครศรีอยุธยา%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numAYA=$row['count'];
+// print_r($row['province']);
+$reportAYA=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดพระนครศรีอยุธยา','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numAYA,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end พระนครศรีอยุธยา
+
 // พัทลุง
 $query="SELECT * FROM datas WHERE province LIKE '%พัทลุง%' ORDER BY id DESC LIMIT 0,1";
 $result=mysqli_query($conn, $query);
@@ -294,6 +303,15 @@ $numPKT=$row['count'];
 // print_r($row['province']);
 $reportPKT=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดภูเก็ต','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPKT,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end ภูเก็ต
+
+// สมุทรสงคราม
+$query="SELECT * FROM datas WHERE province LIKE '%สมุทรสงคราม%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSKM=$row['count'];
+// print_r($row['province']);
+$reportSKM=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสมุทรสงคราม','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSKM,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สมุทรสงคราม
 
 // มหาสารคาม
 $query="SELECT * FROM datas WHERE province LIKE '%มหาสารคาม%' ORDER BY id DESC LIMIT 0,1";
@@ -366,6 +384,15 @@ $numLRI=$row['count'];
 // print_r($row['province']);
 $reportLRI=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดลพบุรี','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numLRI,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end ลพบุรี
+
+// ลำปาง
+$query="SELECT * FROM datas WHERE province LIKE '%ลำปาง%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numLPG=$row['count'];
+// print_r($row['province']);
+$reportLPG=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดลำปาง','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numLPG,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end ลำปาง
 
 // ลำพูน
 $query="SELECT * FROM datas WHERE province LIKE '%ลำพูน%' ORDER BY id DESC LIMIT 0,1";
@@ -736,6 +763,11 @@ if($request_array['events']>0){
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportPYO]
             ];
+        }elseif($text=='พระนครศรีอยุธยา') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportAYA]
+            ];
         }elseif($text=='พัทลุง') {
             $data=[
                 'replyToken'=>$reply_token,
@@ -750,6 +782,11 @@ if($request_array['events']>0){
             $data=[
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportPKT]
+            ];
+        }elseif($text=='สมุทรสงคราม') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSKM]
             ];
         }elseif($text=='มหาสารคาม') {
             $data=[
@@ -790,6 +827,11 @@ if($request_array['events']>0){
             $data=[
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportLRI]
+            ];
+        }elseif($text=='ลำปาง') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportLPG]
             ];
         }elseif($text=='ลำพูน') {
             $data=[

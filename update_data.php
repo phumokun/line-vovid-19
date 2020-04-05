@@ -4,7 +4,7 @@ include_once 'connectdb.php';
 // reprot all
 $curl=curl_init();
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_particular_country.php?country=Thailand",
+	CURLOPT_URL => "https://coronavirus-monitor-v2.p.rapidapi.com/coronavirus/cases_by_particular_country.php?country=Thailand",
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_ENCODING => "",
@@ -143,8 +143,8 @@ if($err){
 if(isset($_POST['submit'])){
     foreach($dataprovince as $datas=>$data){
 
-        $province = $dataprovince[$datas]['Province'];
-        $count = $dataprovince[$datas]['Province:count'];
+        $province = $dataprovince[$datas]['Province of isolation'];
+        $count = $dataprovince[$datas]['Province of isolation:count'];
      
         $sql = "INSERT INTO datas(province,count) VALUES('".$province."','".$count."')";
         mysqli_query($conn,$sql);
