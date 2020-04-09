@@ -421,6 +421,16 @@ $numSNK=$row['count'];
 $reportSNK=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสกลนคร','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSNK,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end สกลนคร
 
+// สตูล
+$query="SELECT * FROM datas WHERE province LIKE '%สตูล%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numSTN=$row['count'];
+// print_r($row['province']);
+$reportSTN=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดสตูล','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numSTN,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end สตูล
+
+
 // สมุทรปราการ
 $query="SELECT * FROM datas WHERE province LIKE '%สมุทรปราการ%' ORDER BY id DESC LIMIT 0,1";
 $result=mysqli_query($conn, $query);
@@ -856,6 +866,11 @@ if($request_array['events']>0){
             $data=[
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportSNK]
+            ];
+        }elseif($text=='สตูล') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportSTN]
             ];
         }elseif($text=='สมุทรปราการ') {
             $data=[
