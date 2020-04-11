@@ -277,6 +277,15 @@ $numAYA=$row['count'];
 $reportAYA=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดพระนครศรีอยุธยา','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numAYA,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
 // end พระนครศรีอยุธยา
 
+// พังงา
+$query="SELECT * FROM datas WHERE province LIKE '%พังงา%' ORDER BY id DESC LIMIT 0,1";
+$result=mysqli_query($conn, $query);
+$row=mysqli_fetch_array($result);
+$numPNA=$row['count'];
+// print_r($row['province']);
+$reportPNA=['type'=>'flex','altText'=>'รายงานสถานการณ์ COVID-19 ตอนนี้','contents'=>['type'=>'bubble','header'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'text','text'=>'รายงานสถานการณ์ COVID-19','size'=>'md','weight'=>'bold','color'=>'#ffffff'],['type'=>'text','text'=>'จังหวัดพังงา','size'=>'xs','color'=>'#dddddd','wrap'=>true]],'backgroundColor'=>'#0367D3',],'body'=>['type'=>'box','layout'=>'vertical','contents'=>[['type'=>'box','layout'=>'baseline','margin'=>'lg','contents'=>[['type'=>'text','text'=>'ผู้ติดเชื้อ','weight'=>'bold','size'=>'sm','align'=>'start','color'=>'#555555','flex'=>0],['type'=>'text','text'=>$numPNA,'weight'=>'bold','size'=>'sm','align'=>'end','color'=>'#555555']]],['type'=>'separator','margin'=>'xxl'],['type'=>'box','layout'=>'horizontal','margin'=>'md','contents'=>[['type'=>'text','text'=>'ข้อมูล Real Time จาก opend.data.go.th','size'=>'xs','color'=>'#aaaaaa','flex'=>0]]]]]]];
+// end พังงา
+
 // พัทลุง
 $query="SELECT * FROM datas WHERE province LIKE '%พัทลุง%' ORDER BY id DESC LIMIT 0,1";
 $result=mysqli_query($conn, $query);
@@ -786,6 +795,11 @@ if($request_array['events']>0){
             $data=[
                 'replyToken'=>$reply_token,
                 'messages'=>[$reportAYA]
+            ];
+        }elseif($text=='พังงา') {
+            $data=[
+                'replyToken'=>$reply_token,
+                'messages'=>[$reportPNA]
             ];
         }elseif($text=='พัทลุง') {
             $data=[
